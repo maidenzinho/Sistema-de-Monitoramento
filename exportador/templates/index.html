@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Exportador Elastic → Excel</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="topo">
+      <h1>Exportador Elastic → Excel</h1>
+      <p class="sub">Gera <b>raw_events</b> completo + análises + gráficos no Excel.</p>
+    </header>
+
+    <section class="card">
+      <h2>Parâmetros</h2>
+
+      <div class="grid">
+        <label>
+  Índice (preset)
+  <select id="indice_preset"></select>
+  <span class="hint">Escolha um preset e o campo Índice será preenchido.</span>
+</label>
+
+<label>
+          Índice
+          <input id="indice" placeholder="ex: filebeat-*" value="{{ cfg.default_index }}"/>
+        </label>
+
+        <label>
+          Campo de tempo
+          <input id="campo_tempo" placeholder="@timestamp" value="{{ cfg.default_time_field }}"/>
+        </label>
+
+        <label class="span2">
+  Janela de tempo (preset)
+  <select id="time_preset"></select>
+  <span class="hint">Preenche Início/Fim automaticamente (UTC do seu navegador).</span>
+</label>
+
+<label>
+          Início (ISO)
+          <input id="inicio" type="datetime-local" />
+          <span class="hint">Ex.: 2025-12-12T00:00</span>
+        </label>
+
+        <label>
+          Fim (ISO)
+          <input id="fim" type="datetime-local" />
+          <span class="hint">Ex.: 2025-12-12T23:59</span>
+        </label>
+
+        <label class="span2">
+  Query (preset)
+  <select id="query_preset"></select>
+  <span class="hint">Escolha um preset e o campo Query será preenchido.</span>
+</label>
+
+<label class="span2">
+          Query (Lucene query_string)
+          <input id="query_string" placeholder='ex: event.dataset:"suricata.eve" AND event.kind:"alert"' value="*"/>
+          <span class="hint">Dica: para “tudo”, use <b>*</b>. Para exportar de verdade, use um range de tempo maior (1h / 24h / 7d).</span>
+        </label>
+
+        <label>
+          Limite de docs (opcional)
+          <input id="max_docs" type="number" min="1" placeholder="vazio = sem limite"/>
+          <span class="hint">Excel tem limite de ~1.048.576 linhas por aba (ele quebra em abas).</span>
+        </label>
+
+        <label>
+          Tamanho da página
+          <input id="tamanho_pagina" type="number" min="500" step="500" value="5000"/>
+        </label>
+
+        <label>
+          Análises automáticas
+          <select id="gerar_auto">
+            <option value="true" selected>Sim (Top N + Série temporal + Campos)</option>
+            <option value="false">Não (somente raw_events)</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="acoes">
+        <button id="btn_testar" class="sec">Testar conexão</button>
+        <button id="btn_exportar" class="pri">Exportar para Excel</button>
+      </div>
+
+      <div id="status" class="status">Pronto.</div>
+      <div class="barra">
+        <div id="progresso" class="progresso"></div>
+      </div>
+      <div id="download"></div>
+    </section>
+
+    <section class="card">
+      <h2>Importar painéis do Grafana (opcional)</h2>
+      <p class="sub">Cole o JSON do <b>Query Inspector</b> e clique em “Converter”. Isso cria abas extras via agregações.</p>
+      <textarea id="qi_json" rows="10" placeholder='Cole aqui o JSON (Query Inspector)'></textarea>
+      <div class="acoes">
+        <button id="btn_converter" class="sec">Converter</button>
+        <button id="btn_limpar" class="sec">Limpar</button>
+      </div>
+      <div class="mini">
+        <div class="col">
+          <h3>Painéis gerados</h3>
+          <pre id="paineis_preview">[]</pre>
+        </div>
+        <div class="col">
+          <h3>Dica</h3>
+          <ol>
+            <li>Painel → Inspect → Query</li>
+            <li>Copie o JSON</li>
+            <li>Cole aqui e converta</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

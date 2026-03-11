@@ -1,0 +1,8 @@
+cluster.name: suricata-central
+node.name: es01
+network.host: 0.0.0.0
+http.port: 9200
+discovery.type: single-node
+
+# Ajuste conforme sua RAM (opcional):
+# xpack.security.enabled: true

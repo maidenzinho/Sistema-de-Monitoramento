@@ -1,0 +1,1744 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Surricata, IDS/IPS",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 1,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "ffcqn67zhs3y8e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 10,
+        "x": 0,
+        "y": 0
+      },
+      "id": 3,
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "/^suricata\\.eve.alert.signature$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.2",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "suricata.eve.alert.signature",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_count",
+                "size": "1"
+              },
+              "type": "terms"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "ff5swwa5t8v0gd"
+          },
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "event.dataset:\"suricata.eve\" AND suricata.eve.event_type:\"alert\", \"drop\", \"reject\", \"pass\"",
+          "refId": "A",
+          "target": "",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Ataque mais usado",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "ffcqn67zhs3y8e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 5,
+        "x": 10,
+        "y": 0
+      },
+      "id": 17,
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "/^source\\.geo.country_iso_code$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.2",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "source.geo.country_iso_code",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_count",
+                "size": "1"
+              },
+              "type": "terms"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "ff5swwa5t8v0gd"
+          },
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "event.dataset:\"suricata.eve\" AND suricata.eve.event_type:\"alert\", \"drop\", \"reject\", \"pass\"",
+          "refId": "A",
+          "target": "",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "País que mais atacou",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "ffcqn67zhs3y8e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 9,
+        "x": 15,
+        "y": 0
+      },
+      "id": 20,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "/^source\\.ip$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.2",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "source.ip",
+              "id": "2",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "1",
+                "size": "1"
+              },
+              "type": "terms"
+            }
+          ],
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "event.dataset:\"suricata.eve\" AND _exists_:source.ip",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "IP que mais atacou",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "ffcqn67zhs3y8e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "yellow",
+                "value": 100
+              },
+              {
+                "color": "dark-orange",
+                "value": 500
+              },
+              {
+                "color": "dark-red",
+                "value": 1000
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 15,
+        "x": 0,
+        "y": 2
+      },
+      "id": 19,
+      "options": {
+        "basemap": {
+          "config": {
+            "showLabels": true,
+            "theme": "auto"
+          },
+          "name": "Layer 0",
+          "noRepeat": false,
+          "opacity": 1,
+          "type": "osm-standard"
+        },
+        "controls": {
+          "mouseWheelZoom": true,
+          "showAttribution": true,
+          "showDebug": false,
+          "showMeasure": false,
+          "showScale": false,
+          "showZoom": true
+        },
+        "layers": [
+          {
+            "config": {
+              "showLegend": true,
+              "style": {
+                "color": {
+                  "field": "Count",
+                  "fixed": "dark-green"
+                },
+                "opacity": 0.7,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 5,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "symbolAlign": {
+                  "horizontal": "center",
+                  "vertical": "center"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "filterData": {
+              "id": "byRefId",
+              "options": "A"
+            },
+            "location": {
+              "geohash": "source.geo.location",
+              "mode": "geohash"
+            },
+            "name": "Layer 1",
+            "tooltip": true,
+            "type": "markers"
+          }
+        ],
+        "tooltip": {
+          "mode": "details"
+        },
+        "view": {
+          "allLayers": true,
+          "id": "zero",
+          "lat": 0,
+          "lon": 0,
+          "noRepeat": false,
+          "zoom": 1
+        }
+      },
+      "pluginVersion": "12.3.2",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "source.geo.location",
+              "id": "3",
+              "settings": {
+                "precision": "3"
+              },
+              "type": "geohash_grid"
+            }
+          ],
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "event.dataset:\"suricata.eve\" AND _exists_:source.geo.location",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Mapa de Origem de Ataques",
+      "type": "geomap"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "ffcqn67zhs3y8e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 9,
+        "x": 15,
+        "y": 2
+      },
+      "id": 5,
+      "options": {
+        "alertThreshold": true,
+        "displayMode": "gradient",
+        "legend": {
+          "calcs": [
+            "sum"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "12.3.2",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "source.geo.country_iso_code",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_count",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "ff5swwa5t8v0gd"
+          },
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "event.dataset:\"suricata.eve\" AND suricata.eve.event_type:\"alert\", \"drop\", \"reject\", \"pass\"",
+          "refId": "A",
+          "target": "",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Países",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "ffcqn67zhs3y8e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 9,
+        "x": 0,
+        "y": 10
+      },
+      "id": 9,
+      "maxDataPoints": 3,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "value"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "sort": "desc",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.2",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "suricata.eve.alert.signature",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_count",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "ff5swwa5t8v0gd"
+          },
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "event.dataset:\"suricata.eve\" AND suricata.eve.event_type:\"alert\", \"drop\", \"reject\", \"pass\"",
+          "refId": "A",
+          "target": "",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Tipos de ataques",
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "ffcqn67zhs3y8e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": true,
+                  "tooltip": true,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 7,
+        "x": 9,
+        "y": 10
+      },
+      "id": 10,
+      "maxDataPoints": 3,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "value"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "sort": "desc",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.2",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "suricata.eve.alert.category",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "1",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "ff5swwa5t8v0gd"
+          },
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "event.dataset:\"suricata.eve\" AND _exists_:suricata.eve.alert.category",
+          "refId": "A",
+          "target": "",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Categoria de ataque",
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "ffcqn67zhs3y8e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "decimals": 0,
+          "fieldMinMax": false,
+          "mappings": []
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "destination.port"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Porta de destino:"
+              },
+              {
+                "id": "displayName",
+                "value": "Porta de destino: ${__value.raw}"
+              }
+            ]
+          },
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "Porta de destino: ${__value.raw}"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": true,
+                  "viz": true
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "Count"
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": true,
+                  "tooltip": true,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 16,
+        "y": 10
+      },
+      "id": 11,
+      "maxDataPoints": 3,
+      "options": {
+        "displayLabels": [],
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "percent"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "/.*/",
+          "values": true
+        },
+        "sort": "desc",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.2",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "field": "destination.port",
+              "id": "2",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "asc",
+                "orderBy": "1",
+                "size": "10"
+              },
+              "type": "terms"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "ff5swwa5t8v0gd"
+          },
+          "dsType": "elasticsearch",
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "event.dataset:\"suricata.eve\" AND _exists_:destination.port",
+          "refId": "A",
+          "target": "",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Portas",
+      "transformations": [
+        {
+          "id": "rowsToFields",
+          "options": {
+            "mappings": [
+              {
+                "fieldName": "destination.port",
+                "handlerKey": "field.value"
+              },
+              {
+                "fieldName": "Count",
+                "handlerKey": "mappings.value"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "ffcqn67zhs3y8e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 20,
+            "gradientMode": "scheme",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 19
+      },
+      "id": 21,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "right",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.2",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "5",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": "0",
+                "timeZone": "utc",
+                "trimEdges": "0"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "event.dataset:\"suricata.eve\"",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Histórico de ataques",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "ffcqn67zhs3y8e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "decimals": 0,
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "suricata.eve.alert.signature_id"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Sigature ID"
+              },
+              {
+                "id": "unit",
+                "value": "string"
+              },
+              {
+                "id": "custom.align",
+                "value": "center"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Count"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "custom.align"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "suricata.eve.alert.signature"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Alert Signature"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "custom.align"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "source.ip"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Source IP"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "custom.align"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "destination.ip"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Destination IP"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "custom.align"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "network.protocol"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Protocol"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "custom.align"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "destination.port"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Destination Port"
+              },
+              {
+                "id": "unit",
+                "value": "string"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "custom.align"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "@timestamp"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "unit",
+                "value": "time: YYYY-MM-DD HH:mm:ss"
+              },
+              {
+                "id": "custom.align"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "source.as.organization.name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 259
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Sigature ID"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 109
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "source.as.number"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 26
+      },
+      "id": 18,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "12.3.2",
+      "targets": [
+        {
+          "bucketAggs": [],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "ff5swwa5t8v0gd"
+          },
+          "metrics": [
+            {
+              "id": "1",
+              "settings": {
+                "size": "500"
+              },
+              "type": "raw_data"
+            }
+          ],
+          "query": "event.dataset:\"suricata.eve\" AND event.kind:(alert OR drop OR reject OR pass) AND _exists_:source.as.number",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Detalhes dos Ataques",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "_id": true,
+              "_index": true,
+              "_type": true,
+              "agent.ephemeral_id": true,
+              "agent.hostname": true,
+              "agent.id": true,
+              "agent.name": true,
+              "agent.type": true,
+              "agent.version": true,
+              "destination.address": true,
+              "destination.as.number": true,
+              "destination.as.organization.name": true,
+              "destination.bytes": true,
+              "destination.domain": true,
+              "destination.geo.city_name": true,
+              "destination.geo.continent_name": true,
+              "destination.geo.country_iso_code": true,
+              "destination.geo.country_name": true,
+              "destination.geo.location.lat": true,
+              "destination.geo.location.lon": true,
+              "destination.geo.region_iso_code": true,
+              "destination.geo.region_name": true,
+              "destination.ip": true,
+              "destination.packets": true,
+              "ecs.version": true,
+              "event.category": true,
+              "event.created": true,
+              "event.dataset": true,
+              "event.ingested": true,
+              "event.kind": true,
+              "event.module": true,
+              "event.original": true,
+              "event.severity": true,
+              "event.start": true,
+              "event.type": true,
+              "fileset.name": true,
+              "highlight": true,
+              "host.architecture": true,
+              "host.containerized": true,
+              "host.hostname": true,
+              "host.id": true,
+              "host.ip": true,
+              "host.mac": true,
+              "host.name": true,
+              "host.os.codename": true,
+              "host.os.family": true,
+              "host.os.kernel": true,
+              "host.os.name": true,
+              "host.os.platform": true,
+              "host.os.type": true,
+              "host.os.version": true,
+              "http.request.method": true,
+              "http.response.body.bytes": true,
+              "http.response.status_code": true,
+              "input.type": true,
+              "log.file.path": true,
+              "log.offset": true,
+              "message": true,
+              "network.bytes": true,
+              "network.community_id": true,
+              "network.direction": true,
+              "network.packets": true,
+              "network.protocol": false,
+              "network.transport": true,
+              "related.hosts": true,
+              "related.ip": true,
+              "rule.category": true,
+              "rule.id": true,
+              "rule.name": true,
+              "service.type": true,
+              "sort": true,
+              "source.address": true,
+              "source.as.number": false,
+              "source.as.organization.name": false,
+              "source.bytes": true,
+              "source.geo.city_name": true,
+              "source.geo.continent_name": true,
+              "source.geo.country_iso_code": true,
+              "source.geo.country_name": true,
+              "source.geo.location.lat": true,
+              "source.geo.location.lon": true,
+              "source.geo.region_iso_code": true,
+              "source.geo.region_name": true,
+              "source.ip": false,
+              "source.packets": true,
+              "source.port": true,
+              "suricata.eve.alert.category": true,
+              "suricata.eve.alert.gid": true,
+              "suricata.eve.alert.metadata.affected_product": true,
+              "suricata.eve.alert.metadata.attack_target": true,
+              "suricata.eve.alert.metadata.created_at": true,
+              "suricata.eve.alert.metadata.deployment": true,
+              "suricata.eve.alert.metadata.former_category": true,
+              "suricata.eve.alert.metadata.malware_family": true,
+              "suricata.eve.alert.metadata.performance_impact": true,
+              "suricata.eve.alert.metadata.signature_severity": true,
+              "suricata.eve.alert.metadata.updated_at": true,
+              "suricata.eve.alert.rev": true,
+              "suricata.eve.alert.signature": false,
+              "suricata.eve.alert.signature_id": false,
+              "suricata.eve.app_proto_tc": true,
+              "suricata.eve.app_proto_ts": true,
+              "suricata.eve.direction": true,
+              "suricata.eve.event_type": true,
+              "suricata.eve.files": true,
+              "suricata.eve.flow": true,
+              "suricata.eve.flow.src_ip": true,
+              "suricata.eve.flow_id": true,
+              "suricata.eve.http.http_content_type": true,
+              "suricata.eve.http.protocol": true,
+              "suricata.eve.http.redirect": true,
+              "suricata.eve.icmp_code": true,
+              "suricata.eve.in_iface": true,
+              "suricata.eve.ip_v": true,
+              "suricata.eve.metadata": true,
+              "suricata.eve.metadata.flowints.applayer.anomaly.count": true,
+              "suricata.eve.metadata.flowints.http.anomaly.count": true,
+              "suricata.eve.metadata.flowints.smtp.anomaly.count": true,
+              "suricata.eve.metadata.flowints.tls.anomaly.count": true,
+              "suricata.eve.pkt_src": true,
+              "suricata.eve.smtp": true,
+              "suricata.eve.smtp.helo": true,
+              "suricata.eve.smtp.mail_from": true,
+              "suricata.eve.ssh.client.proto_version": true,
+              "suricata.eve.ssh.client.software_version": true,
+              "suricata.eve.tc_progress": true,
+              "suricata.eve.tls.client_alpns": true,
+              "suricata.eve.tls.ja3.hash": true,
+              "suricata.eve.tls.ja3.string": true,
+              "suricata.eve.tls.ja3s.hash": true,
+              "suricata.eve.tls.ja3s.string": true,
+              "suricata.eve.tls.ja4": true,
+              "suricata.eve.tls.server_alpns": true,
+              "suricata.eve.tls.sni": true,
+              "suricata.eve.tls.version": true,
+              "suricata.eve.ts_progress": true,
+              "suricata.eve.tx_id": true,
+              "tags": true,
+              "tls.client.ja3": true,
+              "tls.client.server_name": true,
+              "tls.server.ja3s": true,
+              "tls.version": true,
+              "tls.version_protocol": true,
+              "url.domain": true,
+              "url.fragment": true,
+              "url.original": true,
+              "url.path": true,
+              "url.port": true,
+              "url.query": true,
+              "user_agent.device.name": true,
+              "user_agent.name": true,
+              "user_agent.original": true,
+              "user_agent.os.full": true,
+              "user_agent.os.name": true,
+              "user_agent.os.version": true,
+              "user_agent.version": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "@timestamp": 0,
+              "_id": 7,
+              "_index": 8,
+              "_type": 9,
+              "agent.ephemeral_id": 10,
+              "agent.id": 11,
+              "agent.name": 12,
+              "agent.type": 13,
+              "agent.version": 14,
+              "destination.address": 15,
+              "destination.as.number": 16,
+              "destination.as.organization.name": 17,
+              "destination.bytes": 18,
+              "destination.domain": 94,
+              "destination.geo.city_name": 19,
+              "destination.geo.continent_name": 20,
+              "destination.geo.country_iso_code": 21,
+              "destination.geo.country_name": 22,
+              "destination.geo.location.lat": 23,
+              "destination.geo.location.lon": 24,
+              "destination.geo.region_iso_code": 25,
+              "destination.geo.region_name": 26,
+              "destination.ip": 6,
+              "destination.packets": 27,
+              "destination.port": 95,
+              "ecs.version": 28,
+              "event.category": 29,
+              "event.created": 30,
+              "event.dataset": 31,
+              "event.ingested": 32,
+              "event.kind": 33,
+              "event.module": 34,
+              "event.original": 35,
+              "event.severity": 36,
+              "event.start": 37,
+              "event.type": 38,
+              "fileset.name": 39,
+              "highlight": 40,
+              "host.architecture": 41,
+              "host.containerized": 42,
+              "host.hostname": 43,
+              "host.id": 44,
+              "host.ip": 45,
+              "host.mac": 46,
+              "host.name": 47,
+              "host.os.codename": 48,
+              "host.os.family": 49,
+              "host.os.kernel": 50,
+              "host.os.name": 51,
+              "host.os.platform": 52,
+              "host.os.type": 53,
+              "host.os.version": 54,
+              "http.request.method": 96,
+              "http.response.body.bytes": 97,
+              "http.response.status_code": 98,
+              "input.type": 55,
+              "log.file.path": 56,
+              "log.offset": 57,
+              "message": 58,
+              "network.bytes": 59,
+              "network.community_id": 60,
+              "network.direction": 86,
+              "network.packets": 61,
+              "network.protocol": 99,
+              "network.transport": 62,
+              "related.hosts": 100,
+              "related.ip": 63,
+              "rule.category": 101,
+              "rule.id": 64,
+              "rule.name": 65,
+              "service.type": 66,
+              "sort": 67,
+              "source.address": 68,
+              "source.as.number": 3,
+              "source.as.organization.name": 5,
+              "source.bytes": 69,
+              "source.geo.city_name": 70,
+              "source.geo.continent_name": 71,
+              "source.geo.country_iso_code": 72,
+              "source.geo.country_name": 73,
+              "source.geo.location.lat": 74,
+              "source.geo.location.lon": 75,
+              "source.geo.region_iso_code": 76,
+              "source.geo.region_name": 77,
+              "source.ip": 4,
+              "source.packets": 78,
+              "source.port": 102,
+              "suricata.eve.alert.category": 79,
+              "suricata.eve.alert.gid": 80,
+              "suricata.eve.alert.rev": 81,
+              "suricata.eve.alert.signature": 2,
+              "suricata.eve.alert.signature_id": 1,
+              "suricata.eve.app_proto_tc": 103,
+              "suricata.eve.app_proto_ts": 104,
+              "suricata.eve.direction": 87,
+              "suricata.eve.event_type": 82,
+              "suricata.eve.files": 105,
+              "suricata.eve.flow.dest_ip": 88,
+              "suricata.eve.flow.dest_port": 106,
+              "suricata.eve.flow.src_ip": 89,
+              "suricata.eve.flow.src_port": 107,
+              "suricata.eve.flow_id": 83,
+              "suricata.eve.http": 108,
+              "suricata.eve.http.http_content_type": 109,
+              "suricata.eve.http.protocol": 110,
+              "suricata.eve.icmp_code": 90,
+              "suricata.eve.icmp_type": 91,
+              "suricata.eve.in_iface": 84,
+              "suricata.eve.ip_v": 92,
+              "suricata.eve.metadata": 111,
+              "suricata.eve.metadata.flowints.applayer.anomaly.count": 112,
+              "suricata.eve.metadata.flowints.http.anomaly.count": 113,
+              "suricata.eve.metadata.flowints.smtp.anomaly.count": 114,
+              "suricata.eve.metadata.flowints.tls.anomaly.count": 115,
+              "suricata.eve.pkt_src": 93,
+              "suricata.eve.smtp": 116,
+              "suricata.eve.ssh.client.proto_version": 117,
+              "suricata.eve.ssh.client.software_version": 118,
+              "suricata.eve.ssh.server.proto_version": 119,
+              "suricata.eve.ssh.server.software_version": 120,
+              "suricata.eve.tc_progress": 121,
+              "suricata.eve.tls.client_alpns": 122,
+              "suricata.eve.tls.ja3.hash": 123,
+              "suricata.eve.tls.ja3.string": 124,
+              "suricata.eve.tls.ja3s.hash": 125,
+              "suricata.eve.tls.ja3s.string": 126,
+              "suricata.eve.tls.ja4": 127,
+              "suricata.eve.tls.server_alpns": 128,
+              "suricata.eve.tls.sni": 129,
+              "suricata.eve.tls.version": 130,
+              "suricata.eve.ts_progress": 131,
+              "suricata.eve.tx_id": 132,
+              "tags": 85,
+              "tls.client.ja3": 133,
+              "tls.client.server_name": 134,
+              "tls.server.ja3s": 135,
+              "tls.version": 136,
+              "tls.version_protocol": 137,
+              "url.domain": 138,
+              "url.original": 139,
+              "url.path": 140,
+              "url.port": 141,
+              "user_agent.device.name": 142,
+              "user_agent.name": 143,
+              "user_agent.original": 144,
+              "user_agent.os.full": 145,
+              "user_agent.os.name": 146,
+              "user_agent.os.version": 147,
+              "user_agent.version": 148
+            },
+            "renameByName": {
+              "@timestamp": "Data e Hora",
+              "agent.name": "",
+              "destination.ip": "IP do destinatário",
+              "destination.port": "Porta de destino",
+              "network.protocol": "Protocolo",
+              "source.as.number": "ASN",
+              "source.as.organization.name": "Nome da organização",
+              "source.ip": "IP do Atacante",
+              "suricata.eve.alert.signature": "Assinatura Suricata",
+              "suricata.eve.alert.signature_id": "ID da assinatura Suricata",
+              "suricata.eve.flow.dest_ip": "IP de destino",
+              "suricata.eve.flow.dest_port": "Porta de destino",
+              "suricata.eve.flow.src_ip": "IP de origem",
+              "suricata.eve.flow.src_port": "Porta de origem",
+              "suricata.eve.icmp_code": "",
+              "suricata.eve.icmp_type": "icode",
+              "suricata.eve.ip_v": ""
+            }
+          }
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "preload": false,
+  "refresh": "",
+  "schemaVersion": 42,
+  "tags": [
+    "IDS",
+    "IPS",
+    "Proxmox"
+  ],
+  "templating": {
+    "list": [
+      {
+        "baseFilters": [],
+        "datasource": {
+          "type": "elasticsearch",
+          "uid": "ff5swwa5t8v0gd"
+        },
+        "filters": [],
+        "name": "Filters",
+        "type": "adhoc"
+      },
+      {
+        "allowCustomValue": true,
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "definition": "{\"find\": \"terms\", \"field\":\"suricata.eve.alert.signature\",\"size\":\"1000\"}",
+        "includeAll": true,
+        "multi": true,
+        "name": "attack",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\":\"suricata.eve.alert.signature\",\"size\":\"1000\"}",
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now/d",
+    "to": "now/d"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "suricata - IDS & IPS",
+  "uid": "CILgABg7k",
+  "version": 5
+}

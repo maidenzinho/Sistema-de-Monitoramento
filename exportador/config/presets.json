@@ -1,0 +1,80 @@
+{
+  "index_presets": [
+    {
+      "label": "Filebeat (filebeat-*)",
+      "pattern": "filebeat-*"
+    },
+    {
+      "label": "Suricata (suricata-*)",
+      "pattern": "suricata-*"
+    },
+    {
+      "label": "Logs (logs-*)",
+      "pattern": "logs-*"
+    },
+    {
+      "label": "Custom...",
+      "pattern": ""
+    }
+  ],
+  "query_presets": [
+    {
+      "label": "Tudo (*)",
+      "query": "*"
+    },
+    {
+      "label": "Somente Suricata (event.dataset:suricata.eve)",
+      "query": "event.dataset:suricata.eve"
+    },
+    {
+      "label": "Alertas (event_type:alert)",
+      "query": "event.dataset:suricata.eve AND suricata.eve.event_type:alert"
+    },
+    {
+      "label": "Flow (event_type:flow)",
+      "query": "event.dataset:suricata.eve AND suricata.eve.event_type:flow"
+    },
+    {
+      "label": "HTTP (event_type:http)",
+      "query": "event.dataset:suricata.eve AND suricata.eve.event_type:http"
+    },
+    {
+      "label": "DNS (event_type:dns)",
+      "query": "event.dataset:suricata.eve AND suricata.eve.event_type:dns"
+    },
+    {
+      "label": "TLS (event_type:tls)",
+      "query": "event.dataset:suricata.eve AND suricata.eve.event_type:tls"
+    },
+    {
+      "label": "Somente severidade 1-2 (alert)",
+      "query": "event.dataset:suricata.eve AND suricata.eve.event_type:alert AND suricata.eve.alert.severity:(1 OR 2)"
+    }
+  ],
+  "time_presets": [
+    {
+      "label": "Última 1h",
+      "hours": 1
+    },
+    {
+      "label": "Últimas 6h",
+      "hours": 6
+    },
+    {
+      "label": "Últimas 24h",
+      "hours": 24
+    },
+    {
+      "label": "Últimos 7d",
+      "days": 7
+    },
+    {
+      "label": "Últimos 30d",
+      "days": 30
+    },
+    {
+      "label": "Custom...",
+      "custom": true
+    }
+  ]
+}

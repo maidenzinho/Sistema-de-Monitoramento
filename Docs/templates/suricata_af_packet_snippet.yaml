@@ -1,0 +1,11 @@
+# Trecho para colar no /etc/suricata/suricata.yaml
+af-packet:
+  - interface: ens18          # TROQUE para sua interface
+    cluster-id: 99            # use valor único por interface
+    cluster-type: cluster_flow
+    defrag: yes
+    use-mmap: yes
+    tpacket-v3: yes
+
+# Opcional: community-id (deixe true para correlação)
+#community-id: true

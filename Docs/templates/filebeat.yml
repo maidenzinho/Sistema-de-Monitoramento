@@ -1,0 +1,25 @@
+# Template de Filebeat para Suricata (ajuste IP do Elastic e credenciais)
+filebeat.modules:
+  - module: suricata
+    eve:
+      enabled: true
+      var.paths: ["/var/log/suricata/eve.json"]
+
+processors:
+  - add_fields:
+      target: ''
+      fields:
+        sensor_name: "web01"   # TROQUE em cada servidor
+
+output.elasticsearch:
+  hosts: ["https://IP_DO_ELASTIC:9200"]
+  # Opção 1: usuário/senha
+  #username: "filebeat_ingest"
+  #password: "SENHA_AQUI"
+
+  # Opção 2: API Key (recomendado)
+  #api_key: "ID:APIKEY"
+
+  ssl.certificate_authorities: ["/etc/filebeat/certs/ca.crt"]
+  # Em LAB apenas (não recomendado): 
+  #ssl.verification_mode: none
