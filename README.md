@@ -121,13 +121,13 @@ Antes de começar a instalação, verifique alguns pontos importantes.
 Todos os servidores devem ter horário sincronizado.
 
 Execute:
-
+```
 timedatectl
-
+```
 O resultado deve mostrar:
-
+```
 System clock synchronized: yes
-
+```
 ---
 
 ## Definir hostname
@@ -143,217 +143,219 @@ hostnamectl set-hostname web01
 # 1) Instalar Elasticsearch (Servidor Central)
 
 Instalar dependências:
-
+```
 sudo apt-get update  
 sudo apt-get install -y apt-transport-https ca-certificates curl gnupg
-
+```
 Adicionar repositório:
-
+```
 curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
 
 echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-8.x.list
-
+```
 Instalar:
-
+```
 sudo apt-get update  
 sudo apt-get install -y elasticsearch
-
+```
 Habilitar serviço:
-
+```
 sudo systemctl enable --now elasticsearch
-
+```
 ---
 
 ## Configuração básica
 
 Editar arquivo:
-
+```
 sudo nano /etc/elasticsearch/elasticsearch.yml
-
+```
 Configuração mínima:
-
+```
 cluster.name: suricata-central  
 node.name: es01  
 network.host: 0.0.0.0  
 http.port: 9200  
 discovery.type: single-node
-
+```
 Reiniciar:
-
+```
 sudo systemctl restart elasticsearch
-
+```
 Testar:
-
+```
 curl -k https://localhost:9200
-
+```
 ---
 
 # 2) Instalar Grafana (Servidor Central)
 
 Instalar dependências:
-
+```
 sudo apt-get install -y adduser libfontconfig1
-
+```
 Adicionar repositório:
-
+```
 sudo mkdir -p /etc/apt/keyrings
 
 curl -fsSL https://apt.grafana.com/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/grafana.gpg
 
 echo "deb [signed-by=/etc/apt/keyrings/grafana.gpg] https://apt.grafana.com stable main" | sudo tee /etc/apt/sources.list.d/grafana.list
-
+```
 Instalar Grafana:
-
+```
 sudo apt-get update  
 sudo apt-get install -y grafana
-
+```
 Iniciar serviço:
-
+```
 sudo systemctl enable --now grafana-server
-
+```
 Acessar:
-
+```
 http://IP_DO_SERVIDOR:3000
-
+```
 Login inicial:
-
+```
 admin / admin
-
+```
 ---
 
 # 3) Instalar Suricata (Servidores Monitorados)
 
 Instalar:
-
+```
 sudo apt-get install -y software-properties-common
-
+```
+```
 sudo add-apt-repository ppa:oisf/suricata-stable
-
+```
+```
 sudo apt-get update  
 sudo apt-get install -y suricata
-
+```
 Ativar serviço:
-
+```
 sudo systemctl enable --now suricata
-
+```
 ---
 
 ## Descobrir interface de rede
-
+```
 ip route
-
+```
 Interfaces comuns:
-
+```
 eth0  
 ens18  
 eno1
-
+```
 ---
 
 ## Configurar captura de tráfego
 
 Editar:
-
+```
 sudo nano /etc/suricata/suricata.yaml
-
+```
 Configurar seção af-packet:
-
+```
 af-packet:
   - interface: eth0
     cluster-id: 99
     cluster-type: cluster_flow
-
+```
 ---
 
 ## Atualizar regras
-
+```
 sudo suricata-update
-
+```
 Testar configuração:
-
+```
 sudo suricata -T -c /etc/suricata/suricata.yaml -v
-
+```
 Reiniciar:
-
+```
 sudo systemctl restart suricata
-
+```
 ---
 
 # 4) Instalar Filebeat
 
 Instalar:
-
+```
 sudo apt-get update  
 sudo apt-get install -y filebeat
-
+```
 ---
 
 ## Habilitar módulo Suricata
-
+```
 sudo filebeat modules enable suricata
-
+```
 Editar:
-
+```
 sudo nano /etc/filebeat/modules.d/suricata.yml
-
+```
 Configuração:
-
+```
 - module: suricata
   eve:
     enabled: true
     var.paths: ["/var/log/suricata/eve.json"]
-
+```
 ---
 
 # 5) Configurar envio para Elasticsearch
 
 Editar:
-
+```
 sudo nano /etc/filebeat/filebeat.yml
-
+```
 Exemplo:
-
+```
 output.elasticsearch:
   hosts: ["https://IP_DO_ELASTIC:9200"]
   username: "filebeat_ingest"
   password: "senha_aqui"
-
+```
 ---
 
 ## Identificar servidor nos logs
 
 Adicionar:
-
+```
 processors:
   - add_fields:
       target: ''
       fields:
         sensor_name: "web01"
-
+```
 ---
 
 # 6) Iniciar Filebeat
 
 Testar:
-
+```
 sudo filebeat test config
-
+```
 Iniciar:
-
+```
 sudo systemctl enable --now filebeat
-
+```
 Ver logs:
-
+```
 sudo journalctl -u filebeat -n 50
-
+```
 ---
 
 # 7) Validar ingestão de logs
 
 No Elasticsearch:
-
+```
 GET filebeat-*/_search
-
+```
 Se aparecerem documentos com `@timestamp`, a ingestão está funcionando.
 
 ---
@@ -369,17 +371,17 @@ Connections
 Configurar:
 
 URL:
-
+```
 https://IP_DO_ELASTIC:9200
-
+```
 Index pattern:
-
+```
 filebeat-*
-
+```
 Time field:
-
+```
 @timestamp
-
+```
 ---
 
 # Problemas comuns
@@ -387,21 +389,21 @@ Time field:
 Filebeat não consegue ler eve.json:
 
 Verificar permissões:
-
+```
 ls -l /var/log/suricata/eve.json
-
+```
 Corrigir com:
-
+```
 sudo setfacl -m u:filebeat:r /var/log/suricata/eve.json
-
+```
 ---
 
 Certificado TLS inválido:
 
 Para laboratório pode usar:
-
+```
 ssl.verification_mode: none
-
+```
 Não recomendado em produção.
 
 ---
